@@ -28,5 +28,8 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') // 스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    compile('com.h2database:h2') // 인메모리 관계형 데이터베이스 - 현재 프로젝트에서는 로컬 환경에서의 구동에서 사용함
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
