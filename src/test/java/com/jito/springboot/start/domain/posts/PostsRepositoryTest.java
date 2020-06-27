@@ -34,7 +34,7 @@ public class PostsRepositoryTest {
         postsRepository.save(Posts.builder() // 테이블 posts에 insert/update 쿼리를 실행함 - 이때 id값이 있다면 update, 없다면 insert가 수행됨
                 .title(title)
                 .content(content)
-                .author("jojoldu@gmail.com")
+                .author("jhhj424@naver.com")
                 .build());
 
         //when
