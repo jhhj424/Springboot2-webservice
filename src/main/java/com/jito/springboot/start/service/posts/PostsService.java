@@ -2,13 +2,16 @@ package com.jito.springboot.start.service.posts;
 
 import com.jito.springboot.start.domain.posts.Posts;
 import com.jito.springboot.start.domain.posts.PostsRepository;
+import com.jito.springboot.start.web.dto.PostsListResponseDto;
 import com.jito.springboot.start.web.dto.PostsResponseDto;
 import com.jito.springboot.start.web.dto.PostsSaveRequestDto;
 import com.jito.springboot.start.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Service에 @Autowired가 없는 이유 : 스프링에서 Bean을 주입받는 방식에는 @Autowired, setter, 생성자 - 이렇게 3가지의 방법이 있다.
@@ -54,5 +57,23 @@ public class PostsService {
         Posts entity = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true) // 트랜젝션 범위는 유지하되, 조회 기능만 남겨두어 조회 속도가 개선 - 등록,수정,삭제 기능이 전혀 없는 서비스 메소스에 사용 추천!!
+    public List<PostsListResponseDto> findAllDesc() {
+        // postsRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto 변환 -> List로 반환하
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) // == .map(posts -> new PostsListResponseDto(posts)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        // JpaRepository에서 이미 delete 메소드를 지원하고 있으니 이를 활용함, 엔티티를 파라미터로 삭제할 수도 있고, deleteById 메소드를 이용하면 id로 삭제할 수도 있다.
+        // 존재하는 Posts인지 확인을 위해 엔티티 조회 후 그대로 삭제함
+        postsRepository.delete(posts);
     }
 }
