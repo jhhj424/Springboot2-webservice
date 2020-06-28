@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) { // @LoginUser SessionUser user : 를 이용해서 세션 정보를 가져올 수 있음

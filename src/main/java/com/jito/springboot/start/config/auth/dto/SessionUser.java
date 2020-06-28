@@ -2,6 +2,9 @@ package com.jito.springboot.start.config.auth.dto;
 
 import com.jito.springboot.start.domain.user.User;
 import lombok.Getter;
+
+import java.io.Serializable;
+
 /*
 * User 클래스를 사용하지않고 SessionUser클래스를 따로 생성해서 사용하는 이유 !!
 *  - User 클래스를 세션에 저장하려고 하면 User클래스에 직렬화를 구현하지 않았다는 의미의 에러가 발생함, 이 오류를 해결하기 위해 User 클래스에 직렬화 코드를 넣는것에는 생각해볼게 많다.
@@ -9,7 +12,7 @@ import lombok.Getter;
 *    그래서 직렬화 기능을 가진 세션Dto를 하나 추가로 만들어 사용하는것이 이후 운영 및 유지보수 때 많은 도움이 된다.
 * */
 @Getter
-public class SessionUser {
+public class SessionUser implements Serializable {
     private String name;
     private String email;
     private String picture;
