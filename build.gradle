@@ -36,6 +36,7 @@ dependencies {
     // spring-security-oauth2-client와 spring-security-oauth2-jose를 기본으로 관리해줌
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile('org.springframework.session:spring-session-jdbc')
+    compile('org.mariadb.jdbc:mariadb-java-client')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
