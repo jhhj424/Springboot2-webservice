@@ -32,6 +32,9 @@ dependencies {
     compile('com.h2database:h2') // 인메모리 관계형 데이터베이스 - 현재 프로젝트에서는 로컬 환경에서의 구동에서 사용함
     // 머스테치 의존성 등록 : mustach 파일위치는 기본적으로 src/main/resources/templates임
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    // 스프링 시큐리티 관련 의존성 : 소셜 로그인 등 클라이언트 입장에서 소셜 기능 구현 시 필요한 의존성
+    // spring-security-oauth2-client와 spring-security-oauth2-jose를 기본으로 관리해줌
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
