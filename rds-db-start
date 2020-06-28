@@ -1,0 +1,23 @@
+use springboot2_webservice -- 해당 스키마를 사용
+
+show variables like 'c%'; -- 현재의 character_set, collation 설정을 확인
+
+-- utf8mb4,utf8mb4_general_ci로 설정되지 않은 character, collation 변경
+ALTER DATABASE springboot2_webservice
+CHARACTER SET = 'utf8mb4'
+COLLATE = 'utf8mb4_general_ci';
+
+SELECT @@time_zone, now(); -- 타임존 확인
+
+-- test 테이블 생성
+CREATE TABLE test (
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    content varchar(255) DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+-- 테스트 데이터 insert
+INSERT INTO test(content) VALUES ('테스트');
+
+-- test 테이블 전체 데이터 조회
+SELECT * FROM test;
