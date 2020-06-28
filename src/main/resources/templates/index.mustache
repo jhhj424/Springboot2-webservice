@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#userName}}
-                Logged in as: <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
+            {{#loginUserName}} <!-- userName이란 값이 존재하는 경우!! -->
+                Logged in as: <span id="user">{{loginUserName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a><!-- href="/logout" : 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL - 개발자가 별도로 해당URL에 해당하는 컨트롤러를 만들 필요가 없음 -->
+            {{/loginUserName}}
+            {{^loginUserName}} <!-- userName이란 값이 존재하지 않는 경우!! -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a><!-- href="/oauth2/authorization/google" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL -->
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a><!-- href="/oauth2/authorization/naver" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL -->
+            {{/loginUserName}}
         </div>
     </div>
     <br>
