@@ -1,3 +1,5 @@
+
+
 use springboot2_webservice -- 해당 스키마를 사용
 
 show variables like 'c%'; -- 현재의 character_set, collation 설정을 확인
@@ -21,3 +23,50 @@ INSERT INTO test(content) VALUES ('테스트');
 
 -- test 테이블 전체 데이터 조회
 SELECT * FROM test;
+
+-- posts 테이블 생성
+create table posts 
+(id bigint not null auto_increment
+, created_date datetime
+, modified_date datetime
+, author varchar(255)
+, content TEXT not null
+, title varchar(500) not null
+, primary key (id)) 
+engine=InnoDB;
+
+-- user 테이블 생성
+create table user 
+(id bigint not null auto_increment
+, created_date datetime
+, modified_date datetime
+, email varchar(255) not null
+, name varchar(255) not null
+, picture varchar(255)
+, role varchar(255) not null
+, primary key (id)) 
+engine=InnoDB;
+
+-- 스프링 세션 테이블
+CREATE TABLE SPRING_SESSION (
+	PRIMARY_ID CHAR(36) NOT NULL,
+	SESSION_ID CHAR(36) NOT NULL,
+	CREATION_TIME BIGINT NOT NULL,
+	LAST_ACCESS_TIME BIGINT NOT NULL,
+	MAX_INACTIVE_INTERVAL INT NOT NULL,
+	EXPIRY_TIME BIGINT NOT NULL,
+	PRINCIPAL_NAME VARCHAR(100),
+	CONSTRAINT SPRING_SESSION_PK PRIMARY KEY (PRIMARY_ID)
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
+
+CREATE UNIQUE INDEX SPRING_SESSION_IX1 ON SPRING_SESSION (SESSION_ID);
+CREATE INDEX SPRING_SESSION_IX2 ON SPRING_SESSION (EXPIRY_TIME);
+CREATE INDEX SPRING_SESSION_IX3 ON SPRING_SESSION (PRINCIPAL_NAME);
+
+CREATE TABLE SPRING_SESSION_ATTRIBUTES (
+	SESSION_PRIMARY_ID CHAR(36) NOT NULL,
+	ATTRIBUTE_NAME VARCHAR(200) NOT NULL,
+	ATTRIBUTE_BYTES BLOB NOT NULL,
+	CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
+	CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
