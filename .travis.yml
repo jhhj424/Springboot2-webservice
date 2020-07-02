@@ -40,7 +40,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: jito-springboot2-webservice-build
-    key: webservice.zip # 빌드 파일을 압축해서 전달
+    key: springboot2-webservice.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip
     application: springboot2-webservice
     deployment_group: springboot2-webservice-group
