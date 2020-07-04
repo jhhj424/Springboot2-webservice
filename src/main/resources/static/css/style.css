@@ -1,0 +1,8 @@
+.login-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pl-3 {
+    padding-left: 30px;
+}

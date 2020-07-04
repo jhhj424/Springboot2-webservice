@@ -1,0 +1,42 @@
+{{>layout/header}}<!-- 현재 머스테치 파일(index.mustache)을 기준으로 다른 파일을 가져온다 -->
+
+<h1>지토 노트</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            {{#loginUserName}} <!-- userName이란 값이 존재하는 경우!! -->
+                Logged in as: <span id="user">{{loginUserName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a><!-- href="/logout" : 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL - 개발자가 별도로 해당URL에 해당하는 컨트롤러를 만들 필요가 없음 -->
+            {{/loginUserName}}
+            {{^loginUserName}} <!-- userName이란 값이 존재하지 않는 경우!! -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a><!-- href="/oauth2/authorization/google" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL -->
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a><!-- href="/oauth2/authorization/naver" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL -->
+            {{/loginUserName}}
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>게시글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}} <!-- posts라는 List를 순회한다 (반복문) -->
+            <tr>
+                <td>{{id}}</td> <!-- List에서 뽑아낸 객체의 필드를 사용 -->
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{author}}</td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

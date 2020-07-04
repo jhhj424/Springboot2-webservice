@@ -28,8 +28,8 @@ public class IndexController {
             model.addAttribute("loginUserName", user.getName());
         }
         // 머스테치 스타터 덕분에 src/main/resources/templates/index.mustache로 전환되어 View Resolver가 처리하게됨
-//        return "index";
         return "main";
+//        return "index";
     }
 
     @GetMapping("/posts/save")
