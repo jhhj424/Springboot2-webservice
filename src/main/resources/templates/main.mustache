@@ -46,16 +46,6 @@
         </thead>
         <tbody id="tbody">
         {{#posts}} <!-- posts라는 List를 순회한다 (반복문) -->
-        <tr>
-            <td>{{id}}</td> <!-- List에서 뽑아낸 객체의 필드를 사용 -->
-            <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
-            <td>{{modifiedDate}}</td>
-        </tr>
-        {{/posts}}
-        </tbody>
-        <tbody id="tbody">
-        {{#posts}} <!-- posts라는 List를 순회한다 (반복문) -->
         <tr class="table-primary">
             <td scope="row">{{id}}</td> <!-- List에서 뽑아낸 객체의 필드를 사용 -->
             <td><a href="/posts/update/{{id}}">{{title}}</a></td>
