@@ -1,4 +1,4 @@
-# springboot2-webservice
+# springboot2-webservice [![Build Status](https://travis-ci.org/brainbackdoor/bbd-lotto.svg)](https://travis-ci.org/brainbackdoor/bbd-lotto)
 
 스프링 부트와 AWS으로 구현한 웹 서비스
 
