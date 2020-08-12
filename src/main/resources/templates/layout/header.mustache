@@ -24,20 +24,47 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
+    <div align='right' class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
+            {{#loginUserName}} <!-- userName이란 값이 존재하는 경우!! -->
             <li class="nav-item active">
                 <a class="nav-link" href="/posts/save"><b>글 등록</b><span class="sr-only">(current)</span></a>
+                <!--<a href="/posts/save" role="button" class="btn btn-secondary">글 등록</a>-->
             </li>
-            <!--            <li class="nav-item">-->
-            <!--                <a class="nav-link" href="#">Features</a>-->
-            <!--            </li>-->
+            <!--<li class="nav-item active">-->
+                <!--user: <span id="user">{{loginUserName}}</span>-->
+                <!--email: <span id="user">{{loginUserEmail}}</span>-->
+                <!--&lt;!&ndash;picture: <span id="user">{{loginUserPicture}}</span>&ndash;&gt;-->
+            <!--</li>-->
+            {{/loginUserName}}
         </ul>
-        <!--        <form class="form-inline my-2 my-lg-0">-->
-        <!--            <input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-        <!--            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
-        <!--        </form>-->
+        <div class="form-inline" style="display: inherit;">
+            {{^loginUserName}} <!-- userName이란 값이 존재하지 않는 경우!! -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/oauth2/authorization/naver"><b>Naver Login</b><span class="sr-only">(current)</span></a>
+                        <!--<a href="/oauth2/authorization/naver" class="btn btn-danger" role="button">Naver Login</a>&lt;!&ndash; href="/oauth2/authorization/naver" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL &ndash;&gt;-->
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/oauth2/authorization/google"><b>Google Login</b><span class="sr-only">(current)</span></a>
+                        <!--<a href="/oauth2/authorization/google" class="btn btn-warning" role="button">Google Login</a>&lt;!&ndash; href="/oauth2/authorization/google" : 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL &ndash;&gt;-->
+                    </li>
+                </ul>
+            {{/loginUserName}}
+            {{#loginUserName}} <!-- userName이란 값이 존재하는 경우!! -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <div class="box" style="background: #BDBDBD;">
+                            <img class="profile" src="{{loginUserPicture}}">
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout"><b>Logout</b><span class="sr-only">(current)</span></a>
+                        <!--<a href="/logout" class="btn btn btn-warning" role="button">Logout</a>&lt;!&ndash; href="/logout" : 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL - 개발자가 별도로 해당URL에 해당하는 컨트롤러를 만들 필요가 없음 &ndash;&gt;-->
+                    </li>
+                </ul>
+            {{/loginUserName}}
+        </div>
     </div>
 </nav>
 <br>
