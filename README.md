@@ -1,6 +1,7 @@
 # springboot2-webservice [![Build Status](https://travis-ci.org/brainbackdoor/bbd-lotto.svg)](https://travis-ci.org/brainbackdoor/bbd-lotto)
 
-스프링 부트와 AWS으로 구현한 웹 서비스
+스프링 부트와 AWS으로 구현한 웹 서비스<br>
+http://ec2-15-164-117-59.ap-northeast-2.compute.amazonaws.com/
 
 ## 프로젝트 환경 점검
   - Java 8
