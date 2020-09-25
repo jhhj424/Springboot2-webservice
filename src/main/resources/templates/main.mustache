@@ -1,33 +1,37 @@
-{{>layout/header}}<!-- 현재 머스테치 파일(index.mustache)을 기준으로 다른 파일을 가져온다 -->
+    {{>layout/header}}<!-- 현재 머스테치 파일(index.mustache)을 기준으로 다른 파일을 가져온다 -->
 
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+            </div>
         </div>
+        <br>
+        <!-- 목록 출력 영역 -->
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <!--<th scope="col">게시글번호</th>-->
+                <!--<th scope="col">글번호</th>-->
+                <!--<th scope="col">제목</th>-->
+                <!--<th scope="col">작성자</th>-->
+                <!--<th scope="col">최종수정일</th>-->
+                <!--<th scope="col">No</th>-->
+                <th scope="col">Title</th>
+                <th scope="col">Writer</th>
+                <th scope="col">Last modified date</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#posts}} <!-- posts라는 List를 순회한다 (반복문) -->
+            <tr>
+                <!--<td scope="row">{{id}}</td> &lt;!&ndash; List에서 뽑아낸 객체의 필드를 사용 &ndash;&gt;-->
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{author}}</td>
+                <td id="postDate">{{modifiedDate}}</td>
+            </tr>
+            {{/posts}}
+            </tbody>
+        </table>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <!--<th scope="col">게시글번호</th>-->
-            <th scope="col">글번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}} <!-- posts라는 List를 순회한다 (반복문) -->
-        <tr>
-            <td scope="row">{{id}}</td> <!-- List에서 뽑아낸 객체의 필드를 사용 -->
-            <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
-            <td id="postDate">{{modifiedDate}}</td>
-        </tr>
-        {{/posts}}
-        </tbody>
-    </table>
-</div>
 
-{{>layout/footer}}
+    {{>layout/footer}}
